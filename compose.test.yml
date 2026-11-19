@@ -1,0 +1,28 @@
+# Local test only (not used by Railway): same variables the template sets.
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment: {POSTGRES_PASSWORD: testpw, POSTGRES_DB: railway}
+    volumes: [pg:/var/lib/postgresql/data]
+  dramaclaw-gateway:
+    build: ./gateway
+    environment:
+      SQL_DSN: postgresql://postgres:testpw@postgres:5432/railway
+      SESSION_SECRET: test-session-secret-0123456789abcdef
+    depends_on: [postgres]
+  dramaclaw-api:
+    build: ./api
+    environment:
+      PROMPT_EXPORT_PASSWORD: test-export-secret
+      NEWAPI_ADMIN_BASE_URL: http://dramaclaw-gateway:3000
+      NEWAPI_SQL_DSN: postgresql://postgres:testpw@postgres:5432/railway
+    volumes: [data:/data]
+  dramaclaw-web:
+    build: ./web
+    environment:
+      PORT: "8080"
+      BACKEND_HOST: dramaclaw-api
+      DRAMACLAW_USERNAME: admin
+      DRAMACLAW_PASSWORD: test-ui-password
+    ports: ["8080:8080"]
+volumes: {pg: {}, data: {}}
