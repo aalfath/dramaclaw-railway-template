@@ -5,5 +5,7 @@ FROM claymorelab/dramaclaw-gateway:v1.0.0-rc.24-dramaclaw.3@sha256:c9b8a55721892
 # SQL_DSN (Railway Postgres) and SESSION_SECRET come from the template variables.
 ENV PORT=3000
 
+COPY --chmod=755 start.sh /start.sh
+
 EXPOSE 3000
-ENTRYPOINT ["/new-api"]
+ENTRYPOINT ["/start.sh"]
