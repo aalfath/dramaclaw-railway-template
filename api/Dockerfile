@@ -24,4 +24,4 @@ EXPOSE 8780
 # An empty host makes uvicorn listen on every IPv4 and IPv6 address, so Railway's
 # private network (IPv6) and local checks (IPv4) both reach it. "--host ::" alone
 # is IPv6-only under asyncio.
-CMD ["sh", "-c", "NOVELVIDEO_API_HOST= exec novelvideo api --port \"${PORT:-8780}\""]
+CMD ["sh", "-c", "export NOVELVIDEO_API_HOST=; exec novelvideo api --port \"${PORT:-8780}\""]
