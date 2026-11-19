@@ -1,5 +1,7 @@
 # DramaClaw on Railway
 
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/new/template/dramaclaw?utm_medium=integration&utm_source=button&utm_campaign=dramaclaw)
+
 Railway template for [DramaClaw](https://github.com/dramaclaw/dramaclaw) Community Edition, the open-source AIGC video engine that turns a script into a finished film (dramas, ads, product videos and more) in one pipeline.
 
 This repo is the source the template's services build from. It wraps the official DramaClaw images, pinned by version and digest:
